@@ -4,16 +4,21 @@ import { useSelector } from 'react-redux';
 // MUI
 import { Box } from '@mui/material';
 
+import { DefaultRootState } from './ts models/state.model';
+
 const Balance = () => {
-  const allAmounts = useSelector((state) => state.transactions)
+  const allAmounts = useSelector(
+    (state: DefaultRootState) => state.transactions
+  );
+  const numbered = allAmounts
     .map((transaction) => transaction.amount)
     .map(Number);
-  let totalBalance = allAmounts.reduce((a, e) => a + e, 0).toString();
-  let newTotal = '';
+  let totalBalance = numbered.reduce((a, e) => a + e, 0).toString();
+  let newTotal: string = '';
 
   if (totalBalance.includes('-')) {
-    let splitted = totalBalance.split('-');
-    let [sign, amount] = splitted;
+    const splitted = totalBalance.split('-');
+    const [sign, amount] = splitted;
     newTotal = `-$${+amount}`;
   } else newTotal = `+$${totalBalance}`;
 
@@ -24,11 +29,18 @@ const Balance = () => {
         color: 'black',
       }}
     >
-      <h5>YOUR BALANCE:</h5>
-      <p
+      <h5
         style={{
           borderBottom: '1px solid black',
+          width: '9rem',
+        }}
+      >
+        YOUR BALANCE:
+      </h5>
+      <p
+        style={{
           width: '70px',
+          fontWeight: 700,
         }}
       >
         {newTotal}

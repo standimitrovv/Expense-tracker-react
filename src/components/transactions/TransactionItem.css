@@ -1,0 +1,22 @@
+.deleteBtn {
+  position: absolute;
+  cursor: pointer;
+  background: red;
+  padding: 0.2rem 0.3rem;
+  text-align: center;
+  border: 1px solid black;
+  top: 52%;
+  left: 8%;
+  transform: translate(-100%, -50%);
+}
+
+.deleteBtn:focus {
+  outline: 0;
+}
+
+.text {
+  margin-left: 1.5rem;
+}
+
+.item {
+}

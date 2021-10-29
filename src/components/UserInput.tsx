@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import React from 'react';
 
 // Redux
 import { transactionActions } from './store/transaction-slice';
@@ -8,23 +9,22 @@ import { useDispatch } from 'react-redux';
 import { Button, Divider, TextField } from '@mui/material';
 
 const UserInput = () => {
-  const textRef = useRef();
-  const amountRef = useRef();
+  const textRef = useRef<HTMLInputElement>(null);
+  const amountRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch();
 
-  const submitFormHandler = (e) => {
-    e.preventDefault();
+  const submitFormHandler = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     dispatch(
       transactionActions.addTransaction({
-        text: textRef.current.value,
-        amount: amountRef.current.value,
+        text: textRef.current!.value,
+        amount: amountRef.current!.value,
       })
     );
 
-    // Bad practice, I know
-    textRef.current.value = '';
-    amountRef.current.value = '';
+    textRef.current!.value = '';
+    amountRef.current!.value = '';
   };
 
   return (
