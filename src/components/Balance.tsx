@@ -18,6 +18,7 @@ const Balance = () => {
 
   if (totalBalance.includes('-')) {
     const splitted = totalBalance.split('-');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [sign, amount] = splitted;
     newTotal = `-$${+amount}`;
   } else newTotal = `+$${totalBalance}`;
